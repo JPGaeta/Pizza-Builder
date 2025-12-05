@@ -26,8 +26,8 @@ export const pizzaService = {
     return response.data;
   },
 
-  getOrderById: async (id: string) => {
-    const response = await api.get(`/pizzas/${id}`);
+  getOrderById: async (pizzaId: string) => {
+    const response = await api.get(`/pizzas/${pizzaId}`);
     if (response.status === 404) {
       return [];
     }

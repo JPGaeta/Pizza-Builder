@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import {
   createPizzaFlavor,
+  getPizzaById,
   getPizzaIngredients,
-  getPizzaOrderById,
-  getPizzaOrders,
+  getPizzas,
   getPizzaSizes,
 } from "./controllers/pizza.controller";
 import {
@@ -24,11 +24,11 @@ app.get("/health", (_, res) => {
 
 app.get("/pizzas/sizes", getPizzaSizes);
 app.get("/pizzas/ingredients", getPizzaIngredients);
-app.get("/pizzas", validate(getPizzaOrdersValidator, "query"), getPizzaOrders);
+app.get("/pizzas", validate(getPizzaOrdersValidator, "query"), getPizzas);
 app.get(
-  "/pizzas/:orderId",
+  "/pizzas/:pizzaId",
   validate(getPizzaByIdValidator, "params"),
-  getPizzaOrderById
+  getPizzaById
 );
 app.post("/pizzas", validate(createPizzaValidator, "body"), createPizzaFlavor);
 

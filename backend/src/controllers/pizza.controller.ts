@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {
   createPizza,
-  findAllPizzaOrderById,
+  findAllPizzaById,
   findAllPizzas,
   findAllPizzaSizes,
   findPizzaIngredients,
@@ -18,30 +18,30 @@ export const getPizzaIngredients = (_: Request, res: Response) => {
   res.status(200).json(pizzaIngredients);
 };
 
-export const getPizzaOrders = (req: Request, res: Response) => {
+export const getPizzas = (req: Request, res: Response) => {
   const { customerName, sortBy, order } = req.query as {
     customerName?: string;
     sortBy?: SortField;
     order?: SortOrder;
   };
 
-  const pizzaOrders = findAllPizzas({
+  const pizzas = findAllPizzas({
     customerName,
     sortBy,
     order,
   });
 
-  res.status(200).json(pizzaOrders);
+  res.status(200).json(pizzas);
 };
 
-export const getPizzaOrderById = (req: Request, res: Response) => {
-  const { orderId } = req.params;
+export const getPizzaById = (req: Request, res: Response) => {
+  const { pizzaId } = req.params;
 
-  const pizzaOrder = findAllPizzaOrderById(orderId);
-  if (!pizzaOrder) {
+  const pizza = findAllPizzaById(pizzaId);
+  if (!pizza) {
     return res.status(404).json({ error: "Pizza not found" });
   }
-  res.status(200).json(pizzaOrder);
+  res.status(200).json(pizza);
 };
 
 export const createPizzaFlavor = (req: Request, res: Response) => {

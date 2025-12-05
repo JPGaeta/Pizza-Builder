@@ -28,7 +28,7 @@ export const findAllPizzas = (filters: {
   return result;
 };
 
-export const findAllPizzaOrderById = (id: string) => {
+export const findAllPizzaById = (id: string) => {
   return pizzas.find((pizza) => pizza.id === id);
 };
 
