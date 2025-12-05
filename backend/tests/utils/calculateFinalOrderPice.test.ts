@@ -1,6 +1,6 @@
-import { calculateFinalOrderPrice } from "./calculateFinalOrderPrice";
-import Size from "../types/size";
-import Ingredient from "../types/ingredient";
+import { calculateFinalOrderPrice } from "../../src/utils/calculateFinalOrderPrice";
+import Size from "../../src/types/size";
+import Ingredient from "../../src/types/ingredient";
 
 describe("calculateFinalOrderPrice", () => {
   const smallSize: Size = { id: "sm", name: "Small", basePrice: 8 };

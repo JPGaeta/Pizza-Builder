@@ -1,4 +1,4 @@
-import { createPizza } from "./pizza.service";
+import { createPizza } from "../../src/services/pizza.service";
 
 describe("pizza service", () => {
   it("should create a pizza", () => {

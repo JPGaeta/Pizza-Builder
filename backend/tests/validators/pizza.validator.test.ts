@@ -1,5 +1,5 @@
 import { ZodError } from "zod";
-import { createPizzaValidator } from "./pizza.validator";
+import { createPizzaValidator } from "../../src/validators/pizza.validator";
 
 describe("pizza validator", () => {
   it("should validate create pizza", () => {
