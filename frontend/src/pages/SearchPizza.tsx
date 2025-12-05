@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { pizzaService } from "@/services/pizzaService";
 import { formatDateTimeUS } from "@/utils/formatDateTimeUS";
@@ -10,6 +16,7 @@ import z, { ZodError } from "zod";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
 import { FieldError } from "@/components/ui/field";
+import { AxiosError } from "axios";
 
 const formSchema = z.object({
   pizzaId: z.uuidv4("Pizza ID is required and must be a valid UUID v4"),
@@ -23,11 +30,18 @@ export const SearchPizza = () => {
   const [error, setError] = useState<string | null>(null);
   const pizzaIdCreated = location.state?.pizzaId;
 
-  const { data: pizza, isLoading } = useQuery<Pizza | null>({
+  const {
+    data: pizza,
+    isLoading,
+    error: pizzaError,
+  } = useQuery<Pizza | null>({
     queryKey: ["pizza", appliedSearch],
     queryFn: () => pizzaService.getPizzaOrderById(appliedSearch),
     enabled: !!appliedSearch,
+    retry: false,
   });
+  const isPizzaNotFound =
+    pizzaError instanceof AxiosError && pizzaError.response?.status === 404;
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setError(null);
@@ -86,12 +100,20 @@ export const SearchPizza = () => {
             </Button>
           </div>
           {error && <FieldError className="mt-2">{error}</FieldError>}
+          {isLoading && (
+            <div className="mt-6 flex items-center justify-center">
+              Loading...
+            </div>
+          )}
+          {isPizzaNotFound && (
+            <div className="mt-6 flex items-center justify-center">
+              <CardDescription className="mt-2">
+                Pizza not found
+              </CardDescription>
+            </div>
+          )}
         </CardContent>
       </Card>
-
-      {isLoading && (
-        <div className="flex items-center justify-center py-10">Loading...</div>
-      )}
 
       {pizza && (
         <Card className="p-10">
