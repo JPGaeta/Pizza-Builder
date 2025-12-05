@@ -1,6 +1,4 @@
-import Size from "../types/size";
-import Ingredient from "../types/ingredient";
-import { Pizza } from "../types/pizza";
+import { Size, Ingredient, Pizza } from "../types";
 
 export const sizes: Size[] = [
   { id: "sm", name: 'Small (10")', basePrice: 14.0 },

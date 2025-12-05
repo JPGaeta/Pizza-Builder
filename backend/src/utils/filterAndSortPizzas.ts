@@ -1,4 +1,4 @@
-import { Pizza, SortField, SortOrder } from "../types/pizza";
+import { Pizza, SortField, SortOrder } from "../types";
 
 export const filterPizzas = (pizzas: Pizza[], customerName: string): Pizza[] =>
   pizzas.filter((pizza) =>

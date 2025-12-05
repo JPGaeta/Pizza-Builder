@@ -1,5 +1,4 @@
-import Ingredient from "../types/ingredient";
-import Size from "../types/size";
+import { Ingredient, Size } from "../types";
 
 export const calculateFinalOrderPrice = (
   size: Size,

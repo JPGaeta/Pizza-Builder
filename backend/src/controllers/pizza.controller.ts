@@ -6,7 +6,7 @@ import {
   findAllPizzaSizes,
   findPizzaIngredients,
 } from "../services/pizza.service";
-import { CreatePizza, SortField, SortOrder } from "../types/pizza";
+import { CreatePizza, SortField, SortOrder } from "../types";
 
 export const getPizzaSizes = (_: Request, res: Response) => {
   const pizzaSizes = findAllPizzaSizes();
