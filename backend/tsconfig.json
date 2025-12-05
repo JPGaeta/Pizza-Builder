@@ -11,10 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "src/**/*",
-    "tests/service/pizza.service.test.ts",
-    "tests/validators/pizza.validator.test.ts"
-  ],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist", "tests"]
 }
