@@ -1,4 +1,4 @@
-import { filterPizzas, sortPizzas } from "../../src/utils/filterAndSortPizzas";
+import { filterPizzas, sortPizzas } from "../../src/utils";
 
 describe("filter and sort pizzas", () => {
   const pizzas = [

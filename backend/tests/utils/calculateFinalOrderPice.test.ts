@@ -1,4 +1,4 @@
-import { calculateFinalOrderPrice } from "../../src/utils/calculateFinalOrderPrice";
+import { calculateFinalOrderPrice } from "../../src/utils";
 import { Size, Ingredient } from "../../src/types";
 
 describe("calculateFinalOrderPrice", () => {

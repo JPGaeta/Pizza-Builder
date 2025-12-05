@@ -1,7 +1,6 @@
 import { ingredients, pizzas, sizes } from "../store/data";
 import { CreatePizza, Pizza, SortField, SortOrder } from "../types";
-import { calculateFinalOrderPrice } from "../utils/calculateFinalOrderPrice";
-import { filterPizzas, sortPizzas } from "../utils/filterAndSortPizzas";
+import { calculateFinalOrderPrice, filterPizzas, sortPizzas } from "../utils";
 
 export const findAllPizzaSizes = () => {
   return sizes;
