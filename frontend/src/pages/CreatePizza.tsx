@@ -129,22 +129,25 @@ export function CreatePizza() {
                       name={field.name}
                       onValueChange={(value) => field.onChange(value)}
                     >
-                      {sizes?.map((pizzaSize: Size) => (
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={pizzaSize.id}
-                            id={pizzaSize.id}
-                            checked={field.value === pizzaSize.id}
-                            disabled={isCreatingPizzaOrder}
-                          />
-                          <Label
-                            htmlFor={pizzaSize.id}
-                            aria-disabled={isCreatingPizzaOrder}
-                          >
-                            {pizzaSize.name}
-                          </Label>
-                        </div>
-                      ))}
+                      {sizes?.map((pizzaSize: Size) => {
+                        const labelValue = `${pizzaSize.name} (+${pizzaSize.basePrice.toFixed(2)})`;
+                        return (
+                          <div className="flex items-center space-x-2">
+                            <RadioGroupItem
+                              value={pizzaSize.id}
+                              id={pizzaSize.id}
+                              checked={field.value === pizzaSize.id}
+                              disabled={isCreatingPizzaOrder}
+                            />
+                            <Label
+                              htmlFor={pizzaSize.id}
+                              aria-disabled={isCreatingPizzaOrder}
+                            >
+                              {labelValue}
+                            </Label>
+                          </div>
+                        );
+                      })}
                     </RadioGroup>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
@@ -159,34 +162,37 @@ export function CreatePizza() {
                   <FieldSet>
                     <FieldLegend>Ingredients</FieldLegend>
                     <div className="flex flex-col gap-3">
-                      {ingredients?.map((ingredient: Ingredient) => (
-                        <div
-                          key={ingredient.id}
-                          className="flex items-center space-x-2"
-                        >
-                          <Checkbox
-                            value={ingredient.id}
-                            id={ingredient.id}
-                            onCheckedChange={(checked) =>
-                              field.onChange(
-                                checked
-                                  ? [...field.value, ingredient.id]
-                                  : field.value.filter(
-                                      (id) => id !== ingredient.id,
-                                    ),
-                              )
-                            }
-                            checked={field.value.includes(ingredient.id)}
-                            disabled={isCreatingPizzaOrder}
-                          />
-                          <Label
-                            htmlFor={ingredient.id}
-                            aria-disabled={isCreatingPizzaOrder}
+                      {ingredients?.map((ingredient: Ingredient) => {
+                        const labelValue = `${ingredient.name} (+${ingredient.extraPrice.toFixed(2)})`;
+                        return (
+                          <div
+                            key={ingredient.id}
+                            className="flex items-center space-x-2"
                           >
-                            {ingredient.name}
-                          </Label>
-                        </div>
-                      ))}
+                            <Checkbox
+                              value={ingredient.id}
+                              id={ingredient.id}
+                              onCheckedChange={(checked) =>
+                                field.onChange(
+                                  checked
+                                    ? [...field.value, ingredient.id]
+                                    : field.value.filter(
+                                        (id) => id !== ingredient.id,
+                                      ),
+                                )
+                              }
+                              checked={field.value.includes(ingredient.id)}
+                              disabled={isCreatingPizzaOrder}
+                            />
+                            <Label
+                              htmlFor={ingredient.id}
+                              aria-disabled={isCreatingPizzaOrder}
+                            >
+                              {labelValue}
+                            </Label>
+                          </div>
+                        );
+                      })}
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
                       )}
