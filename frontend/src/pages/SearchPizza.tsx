@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { pizzaService } from "@/services/pizza";
+import { pizzaService } from "@/services/pizzaService";
 import { formatDateTimeUS } from "@/utils/formatDateTimeUS";
 import type { Pizza } from "@/types";
 import { useQuery } from "@tanstack/react-query";
@@ -53,7 +53,7 @@ export const SearchPizza = () => {
       setAppliedSearch(pizzaIdCreated);
       setSearch(pizzaIdCreated);
     }
-  }, [pizzaIdCreated]);
+  }, []);
 
   return (
     <div className="mx-auto my-10 flex max-w-5xl flex-col content-center justify-center gap-6 px-4">

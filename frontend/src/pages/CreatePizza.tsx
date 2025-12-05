@@ -19,7 +19,7 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { pizzaService } from "@/services/pizza";
+import { pizzaService } from "@/services/pizzaService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";

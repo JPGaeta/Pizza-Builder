@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { pizzaService } from "@/services/pizza";
+import { pizzaService } from "@/services/pizzaService";
 import type { Pizza, SortableFields } from "@/types";
-
 import {
   Table,
   TableBody,
@@ -65,87 +64,83 @@ export const ListPizzas = () => {
   };
 
   return (
-    <>
-      <div className="mx-auto my-10 flex max-w-5xl flex-col content-center justify-center px-4">
-        <Card className="p-10">
-          <div className="flex flex-row justify-between">
-            <div className="w-1/2">
-              <div className="flex flex-row items-center justify-start gap-4">
-                <ArrowLeftIcon
-                  className="size-4 cursor-pointer"
-                  onClick={() => navigate("/")}
-                />
-                <CardTitle className="text-4xl font-bold">
-                  Pizzas List
-                </CardTitle>
-              </div>
-            </div>
-            <div className="flex w-1/2 flex-row gap-2">
-              <Input
-                type="text"
-                placeholder="Search by customer name"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+    <div className="mx-auto my-10 flex max-w-5xl flex-col content-center justify-center px-4">
+      <Card className="p-10">
+        <div className="flex flex-row justify-between">
+          <div className="w-1/2">
+            <div className="flex flex-row items-center justify-start gap-4">
+              <ArrowLeftIcon
+                className="size-4 cursor-pointer"
+                onClick={() => navigate("/")}
               />
-              <Button
-                type="submit"
-                variant="outline"
-                className="cursor-pointer"
-                onClick={() => setAppliedSearch(search)}
-              >
-                Search
-              </Button>
+              <CardTitle className="text-4xl font-bold">Pizzas List</CardTitle>
             </div>
           </div>
+          <div className="flex w-1/2 flex-row gap-2">
+            <Input
+              type="text"
+              placeholder="Search by customer name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Button
+              type="submit"
+              variant="outline"
+              className="cursor-pointer"
+              onClick={() => setAppliedSearch(search)}
+            >
+              Search
+            </Button>
+          </div>
+        </div>
 
-          {isLoading && (
-            <div className="flex items-center justify-center py-10">
-              Loading...
-            </div>
-          )}
+        {isLoading && (
+          <div className="flex items-center justify-center py-10">
+            Loading...
+          </div>
+        )}
 
-          {formattedRowsData?.length > 0 && (
-            <div className="bg-card border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Pizza Id</TableHead>
-                    <TableHead>Customer Name</TableHead>
-                    <TableHead
-                      className="cursor-pointer"
-                      onClick={() => handleSort("finalPrice")}
-                    >
-                      Final Price{" "}
-                      {sort.sortBy === "finalPrice" &&
-                        (sort.order === "asc" ? "↑" : "↓")}
-                    </TableHead>
-                    <TableHead
-                      className="cursor-pointer"
-                      onClick={() => handleSort("createdAt")}
-                    >
-                      Created At{" "}
-                      {sort.sortBy === "createdAt" &&
-                        (sort.order === "asc" ? "↑" : "↓")}
-                    </TableHead>
+        {formattedRowsData?.length > 0 && (
+          <div className="bg-card border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Pizza Id</TableHead>
+                  <TableHead>Customer Name</TableHead>
+                  <TableHead
+                    className="cursor-pointer"
+                    onClick={() => handleSort("finalPrice")}
+                  >
+                    Final Price{" "}
+                    {sort.sortBy === "finalPrice" &&
+                      (sort.order === "asc" ? "↑" : "↓")}
+                  </TableHead>
+                  <TableHead
+                    className="cursor-pointer"
+                    onClick={() => handleSort("createdAt")}
+                  >
+                    Created At{" "}
+                    {sort.sortBy === "createdAt" &&
+                      (sort.order === "asc" ? "↑" : "↓")}
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {formattedRowsData?.map((pizzaOrder: FormattedPizzaOrder) => (
+                  <TableRow key={pizzaOrder.id}>
+                    <TableCell>{pizzaOrder.id}</TableCell>
+                    <TableCell>{pizzaOrder.customerName}</TableCell>
+                    <TableCell>{pizzaOrder.finalPrice}</TableCell>
+                    <TableCell>
+                      {pizzaOrder.createdAt.toLocaleString()}
+                    </TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {formattedRowsData?.map((pizzaOrder: FormattedPizzaOrder) => (
-                    <TableRow key={pizzaOrder.id}>
-                      <TableCell>{pizzaOrder.id}</TableCell>
-                      <TableCell>{pizzaOrder.customerName}</TableCell>
-                      <TableCell>{pizzaOrder.finalPrice}</TableCell>
-                      <TableCell>
-                        {pizzaOrder.createdAt.toLocaleString()}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          )}
-        </Card>
-      </div>
-    </>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </Card>
+    </div>
   );
 };
