@@ -6,7 +6,7 @@ A full-stack web application for building and managing custom pizzas.
 
 You can use
 
-- Docker & Docker Compose
+- Docker Compose
 
 Without docker you will need:
 
