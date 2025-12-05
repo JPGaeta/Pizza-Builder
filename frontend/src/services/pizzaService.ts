@@ -2,17 +2,17 @@ import type { CreatePizzaData, Pizza } from "@/types";
 import api from "@/services/api";
 
 export const pizzaService = {
-  getPizzaSizes: async () => {
+  getSizes: async () => {
     const response = await api.get("/pizzas/sizes");
     return response.data;
   },
 
-  getPizzaIngredients: async () => {
+  getIngredients: async () => {
     const response = await api.get("/pizzas/ingredients");
     return response.data;
   },
 
-  getAllPizzasOrders: async (
+  getAll: async (
     filters: { customerName?: string },
     ordering: { sortBy?: "finalPrice" | "createdAt"; order?: "asc" | "desc" },
   ) => {
@@ -26,7 +26,7 @@ export const pizzaService = {
     return response.data;
   },
 
-  getPizzaOrderById: async (id: string) => {
+  getOrderById: async (id: string) => {
     const response = await api.get(`/pizzas/${id}`);
     if (response.status === 404) {
       return [];
@@ -34,8 +34,8 @@ export const pizzaService = {
     return response.data;
   },
 
-  createPizzaOrder: async (pizzaOrderData: CreatePizzaData): Promise<Pizza> => {
-    const response = await api.post("/pizzas", pizzaOrderData);
+  create: async (pizzaData: CreatePizzaData): Promise<Pizza> => {
+    const response = await api.post("/pizzas", pizzaData);
     return response.data;
   },
 };

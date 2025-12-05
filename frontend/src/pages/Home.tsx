@@ -34,7 +34,7 @@ export const Home = () => {
                 List Pizzas
               </CardTitle>
               <CardDescription>
-                View all pizza orders with sorting and filtering
+                View all pizzas with sorting and filtering
               </CardDescription>
             </CardHeader>
           </Card>
@@ -46,9 +46,7 @@ export const Home = () => {
               <CardTitle className="group-hover:text-primary text-2xl">
                 Search Pizza
               </CardTitle>
-              <CardDescription>
-                Find a specific pizza order by its ID
-              </CardDescription>
+              <CardDescription>Find a specific pizza by its ID</CardDescription>
             </CardHeader>
           </Card>
         </Link>

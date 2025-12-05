@@ -32,6 +32,6 @@ export const getPizzaOrdersValidator = z.object({
   order: z.enum(["asc", "desc"]).optional(),
 });
 
-export const getPizzaOrderByIdValidator = z.object({
-  orderId: z.uuidv4("Order ID is required and must be a valid UUID v4"),
+export const getPizzaByIdValidator = z.object({
+  pizzaId: z.uuidv4("Pizza ID is required and must be a valid UUID v4"),
 });

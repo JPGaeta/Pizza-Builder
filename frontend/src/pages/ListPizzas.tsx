@@ -48,7 +48,7 @@ export const ListPizzas = () => {
   const { data: pizzasOrders, isLoading } = useQuery({
     queryKey: ["pizzasOrders", appliedSearch, sort],
     queryFn: () =>
-      pizzaService.getAllPizzasOrders(
+      pizzaService.getAll(
         { customerName: appliedSearch },
         { sortBy: sort.sortBy as SortableFields, order: sort.order },
       ),

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import {
-  createPizzaOrder,
+  createPizzaFlavor,
   getPizzaIngredients,
   getPizzaOrderById,
   getPizzaOrders,
@@ -9,7 +9,7 @@ import {
 } from "./controllers/pizza.controller";
 import {
   createPizzaValidator,
-  getPizzaOrderByIdValidator,
+  getPizzaByIdValidator,
   getPizzaOrdersValidator,
 } from "./validators/pizza.validator";
 import { validate } from "./middleware/validate.middleware";
@@ -27,10 +27,10 @@ app.get("/pizzas/ingredients", getPizzaIngredients);
 app.get("/pizzas", validate(getPizzaOrdersValidator, "query"), getPizzaOrders);
 app.get(
   "/pizzas/:orderId",
-  validate(getPizzaOrderByIdValidator, "params"),
+  validate(getPizzaByIdValidator, "params"),
   getPizzaOrderById
 );
-app.post("/pizzas", validate(createPizzaValidator, "body"), createPizzaOrder);
+app.post("/pizzas", validate(createPizzaValidator, "body"), createPizzaFlavor);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

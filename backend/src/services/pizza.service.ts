@@ -10,7 +10,7 @@ export const findPizzaIngredients = () => {
   return ingredients;
 };
 
-export const findAllPizzaOrders = (filters: {
+export const findAllPizzas = (filters: {
   customerName?: string;
   sortBy?: SortField;
   order?: SortOrder;

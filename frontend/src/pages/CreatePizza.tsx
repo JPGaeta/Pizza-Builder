@@ -49,16 +49,16 @@ export function CreatePizza() {
 
   const { data: sizes, isLoading: isSizesLoading } = useQuery({
     queryKey: ["sizes"],
-    queryFn: () => pizzaService.getPizzaSizes(),
+    queryFn: () => pizzaService.getSizes(),
   });
   const { data: ingredients, isLoading: isIngredientsLoading } = useQuery({
     queryKey: ["ingredients"],
-    queryFn: () => pizzaService.getPizzaIngredients(),
+    queryFn: () => pizzaService.getIngredients(),
   });
   const { mutate: createPizzaOrder, isPending: isCreatingPizzaOrder } =
     useMutation({
       mutationFn: (data: z.infer<typeof formSchema>) =>
-        pizzaService.createPizzaOrder(data),
+        pizzaService.create(data),
       onSuccess: (data) => {
         navigate("/search", { state: { pizzaId: data.id } });
       },

@@ -36,7 +36,7 @@ export const SearchPizza = () => {
     error: pizzaError,
   } = useQuery<Pizza | null>({
     queryKey: ["pizza", appliedSearch],
-    queryFn: () => pizzaService.getPizzaOrderById(appliedSearch),
+    queryFn: () => pizzaService.getOrderById(appliedSearch),
     enabled: !!appliedSearch,
     retry: false,
   });
@@ -124,7 +124,7 @@ export const SearchPizza = () => {
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <label className="text-muted-foreground text-sm font-medium">
-                  Order ID
+                  Pizza ID
                 </label>
                 <Input value={pizza.id} disabled className="bg-muted" />
               </div>

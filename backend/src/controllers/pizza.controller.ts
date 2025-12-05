@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   createPizza,
   findAllPizzaOrderById,
-  findAllPizzaOrders,
+  findAllPizzas,
   findAllPizzaSizes,
   findPizzaIngredients,
 } from "../services/pizza.service";
@@ -25,7 +25,7 @@ export const getPizzaOrders = (req: Request, res: Response) => {
     order?: SortOrder;
   };
 
-  const pizzaOrders = findAllPizzaOrders({
+  const pizzaOrders = findAllPizzas({
     customerName,
     sortBy,
     order,
@@ -44,11 +44,11 @@ export const getPizzaOrderById = (req: Request, res: Response) => {
   res.status(200).json(pizzaOrder);
 };
 
-export const createPizzaOrder = (req: Request, res: Response) => {
+export const createPizzaFlavor = (req: Request, res: Response) => {
   try {
     const data = req.body as CreatePizza;
-    const pizzaOrder = createPizza(data);
-    res.status(201).json(pizzaOrder);
+    const pizza = createPizza(data);
+    res.status(201).json(pizza);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
