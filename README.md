@@ -63,7 +63,13 @@ The frontend will be available at `http://localhost:5173`
 
 ## Tests
 
-There are unit tests on the backend API to run them you need to enter the `backend` folder and run:
+There are unit tests on the backend API you can run after docker container is up using the command on the terminal:
+
+```bash
+docker exec -it backend pnpm test
+```
+
+Or alternatively, to run them you need to enter the `backend` folder and run:
 
 ```bash
 pnpm test

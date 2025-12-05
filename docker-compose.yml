@@ -1,5 +1,6 @@
 services:
   backend:
+    container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -7,7 +8,9 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-    restart: unless-stopped
+    restart: always
+    volumes:
+      - ./backend/src:/app/src
 
   frontend:
     build:
@@ -17,4 +20,5 @@ services:
       - "4173:4173"
     depends_on:
       - backend
-    restart: unless-stopped
+    volumes:
+      - ./frontend/src:/app/src
