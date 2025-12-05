@@ -68,3 +68,19 @@ There are unit tests on the backend API to run them you need to enter the `backe
 ```bash
 pnpm test
 ```
+
+## Improvements:
+
+### Backend
+
+- Environment variables
+- Adapter Pattern Structure for external API layers and database interactions
+- Creation of test factories to control and manage mocks
+- User authentication and route protection including token-based authentication and rate limiting
+
+### Frontend:
+
+- Environment variables
+- Configuration for axios using interceptors and centralizes error handling
+- Api Context to global state management
+- Design and notifications
